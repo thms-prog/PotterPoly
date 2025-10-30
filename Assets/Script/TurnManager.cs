@@ -75,35 +75,35 @@ public class TurnManager : MonoBehaviour
     Debug.Log("🎲 Dés lancés !");
 }
 
-
     IEnumerator ShowDiceResult()
     {
         // ⏳ Attente que les dés soient prêts
         yield return new WaitUntil(() => dice1.isReady && dice2.isReady);
+
+        // ✅ Verrouille le résultat
         dice1.LockResult();
         dice2.LockResult();
 
-        // 🎯 Animation vers l’écran
-        Vector3 screenPos1 = new Vector3(-2, 2, -5);
-        Vector3 screenPos2 = new Vector3(2, 2, -5);
+        // ✅ Stop physique
+        dice1.rb.useGravity = false;
+        dice2.rb.useGravity = false;
+        dice1.rb.linearVelocity = Vector3.zero;
+        dice2.rb.linearVelocity = Vector3.zero;
+        dice1.rb.angularVelocity = Vector3.zero;
+        dice2.rb.angularVelocity = Vector3.zero;
 
-        // ✅ Active la gravité si elle était désactivée
-        dice1.rb.useGravity = true;
-        dice2.rb.useGravity = true;
-        yield return StartCoroutine(dice1.MoveToScreen(screenPos1));
-        yield return StartCoroutine(dice2.MoveToScreen(screenPos2));
-
-        // ✅ Déplacement vers l’écran avec impulsion douce
-        dice1.rb.AddForce(new Vector3(-2, 1, -5), ForceMode.Impulse);
-        dice2.rb.AddForce(new Vector3(2, 1, -5), ForceMode.Impulse);
-
+        // ✅ Remontée en hauteur sans changer de rotation
+        Vector3 resultPos1 = new Vector3(0.5f, 8f, 0f);
+        Vector3 resultPos2 = new Vector3(-0.5f, 8f, 0f);
+        dice1.transform.position = resultPos1;
+        dice2.transform.position = resultPos2;
 
         // 📊 Lecture du résultat
         int total = dice1.lastResult + dice2.lastResult;
         Debug.Log($"📊 D1: {dice1.lastResult}, D2: {dice2.lastResult}, Total: {total}");
 
         // 🕒 Attente pour lecture visuelle
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
 
         // 🧼 Désactivation des dés
         dice1.gameObject.SetActive(false);
@@ -121,5 +121,6 @@ public class TurnManager : MonoBehaviour
         dice2.hasBeenLaunched = false;
         dice1.isReady = false;
         dice2.isReady = false;
+        
     }
 }
