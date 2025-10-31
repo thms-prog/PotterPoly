@@ -17,12 +17,12 @@ public class TurnManager : MonoBehaviour
     void Update()
     {
         // 🎲 Déclenchement du lancer
-        if (!hasLaunched && (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButtonDown(0)))
+        if (!hasLaunched &&
+            (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began ||
+             Input.GetMouseButtonDown(0)))
         {
             LaunchDice();
         }
-        
-
 
         // 📦 Attente que les dés soient figés
         if (hasLaunched && !hasMoved && !isProcessing &&
@@ -36,44 +36,50 @@ public class TurnManager : MonoBehaviour
     }
 
     void LaunchDice()
-{
-    hasLaunched = true;
-    hasMoved = false;
-    isProcessing = false;
+    {
+        hasLaunched = true;
+        hasMoved = false;
+        isProcessing = false;
 
-    // ✅ Activation des dés
-    dice1.gameObject.SetActive(true);
-    dice2.gameObject.SetActive(true);
+        // ✅ Activation des dés
+        dice1.gameObject.SetActive(true);
+        dice2.gameObject.SetActive(true);
 
-    // ✅ Position de départ
-    dice1.transform.position = new Vector3(0, 2, 0);
-    dice2.transform.position = new Vector3(1, 2, 0);
+        // ✅ Position de départ
+        dice1.transform.position = new Vector3(0.5f, 8f, 0f);
+        dice2.transform.position = new Vector3(-0.5f, 8f, 0f);
+        //Stop l'animation faite dans animator
+        dice1.GetComponent<Animator>().enabled = false;
+        dice2.GetComponent<Animator>().enabled = false;
+        // Translation instantanée vers le bas (simule une descente)
+        dice1.transform.Translate(Vector3.down * 3f);
+        dice2.transform.Translate(Vector3.down * 3f);
 
-    // ✅ Activation de la gravité
-    dice1.rb.useGravity = true;
-    dice2.rb.useGravity = true;
+        // ✅ Activation de la gravité
+        dice1.rb.useGravity = true;
+        dice2.rb.useGravity = true;
 
-    // ✅ Lancement physique
-    dice1.rb.isKinematic = false;
-    dice2.rb.isKinematic = false;
+        // ✅ Lancement physique
+        dice1.rb.isKinematic = false;
+        dice2.rb.isKinematic = false;
 
-    dice1.rb.linearVelocity = Vector3.zero;
-    dice2.rb.linearVelocity = Vector3.zero;
+        dice1.rb.linearVelocity = Vector3.zero;
+        dice2.rb.linearVelocity = Vector3.zero;
 
-    dice1.rb.AddForce(Random.onUnitSphere * 6f, ForceMode.Impulse);
-    dice2.rb.AddForce(Random.onUnitSphere * 6f, ForceMode.Impulse);
+        dice1.rb.AddForce(Random.onUnitSphere * 6f, ForceMode.Impulse);
+        dice2.rb.AddForce(Random.onUnitSphere * 6f, ForceMode.Impulse);
 
-    dice1.rb.AddTorque(Random.onUnitSphere * 6f, ForceMode.Impulse);
-    dice2.rb.AddTorque(Random.onUnitSphere * 6f, ForceMode.Impulse);
+        dice1.rb.AddTorque(Random.onUnitSphere * 6f, ForceMode.Impulse);
+        dice2.rb.AddTorque(Random.onUnitSphere * 6f, ForceMode.Impulse);
 
-    dice1.hasBeenLaunched = true;
-    dice2.hasBeenLaunched = true;
+        dice1.hasBeenLaunched = true;
+        dice2.hasBeenLaunched = true;
 
-    dice1.isReady = false;
-    dice2.isReady = false;
+        dice1.isReady = false;
+        dice2.isReady = false;
 
-    Debug.Log("🎲 Dés lancés !");
-}
+        Debug.Log("🎲 Dés lancés !");
+    }
 
     IEnumerator ShowDiceResult()
     {
@@ -87,14 +93,17 @@ public class TurnManager : MonoBehaviour
         // ✅ Stop physique
         dice1.rb.useGravity = false;
         dice2.rb.useGravity = false;
+
         dice1.rb.linearVelocity = Vector3.zero;
         dice2.rb.linearVelocity = Vector3.zero;
+
         dice1.rb.angularVelocity = Vector3.zero;
         dice2.rb.angularVelocity = Vector3.zero;
 
         // ✅ Remontée en hauteur sans changer de rotation
         Vector3 resultPos1 = new Vector3(0.5f, 8f, 0f);
         Vector3 resultPos2 = new Vector3(-0.5f, 8f, 0f);
+
         dice1.transform.position = resultPos1;
         dice2.transform.position = resultPos2;
 
@@ -119,8 +128,8 @@ public class TurnManager : MonoBehaviour
 
         dice1.hasBeenLaunched = false;
         dice2.hasBeenLaunched = false;
+
         dice1.isReady = false;
         dice2.isReady = false;
-        
     }
 }

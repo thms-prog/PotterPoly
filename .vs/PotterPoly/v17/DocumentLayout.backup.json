@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{B6DBF37E-4D29-04BB-0618-DDB59031CC40}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\turnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6DBF37E-4D29-04BB-0618-DDB59031CC40}|Assembly-CSharp.csproj|D:\\Dev\\UnityProject\\PotterPoly\\assets\\script\\dicereader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B6DBF37E-4D29-04BB-0618-DDB59031CC40}|Assembly-CSharp.csproj|d:\\dev\\unityproject\\potterpoly\\assets\\script\\dicereader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6DBF37E-4D29-04BB-0618-DDB59031CC40}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\dicereader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "Assets\\Script\\DiceReader.cs",
               "ToolTip": "D:\\Dev\\UnityProject\\PotterPoly\\Assets\\Script\\DiceReader.cs",
               "RelativeToolTip": "Assets\\Script\\DiceReader.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAswCgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowEEAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-30T17:42:27.927Z",
               "EditorCaption": ""
@@ -41,7 +41,7 @@
               "RelativeDocumentMoniker": "Assets\\Script\\TurnManager.cs",
               "ToolTip": "D:\\Dev\\UnityProject\\PotterPoly\\Assets\\Script\\TurnManager.cs",
               "RelativeToolTip": "Assets\\Script\\TurnManager.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAgwDIAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAowF8AAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-30T17:37:50.495Z",
               "EditorCaption": ""
